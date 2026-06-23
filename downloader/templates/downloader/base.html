@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ page_title }}{% endblock %}</title>
+  <meta name="description" content="{{ meta_desc }}">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ meta_desc }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ meta_desc }}">
+  {% block canonical %}<link rel="canonical" href="https://yoursite.com/">{% endblock %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'downloader/css/main.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.6.0/iconfont/tabler-icons.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">⬇</div>
+      VidDown<span>.pro</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/tiktok-downloader/" {% if request.path == '/tiktok-downloader/' %}class="active"{% endif %}>TikTok</a></li>
+      <li><a href="/instagram-downloader/" {% if request.path == '/instagram-downloader/' %}class="active"{% endif %}>Instagram</a></li>
+      <li><a href="/youtube-downloader/" {% if request.path == '/youtube-downloader/' %}class="active"{% endif %}>YouTube</a></li>
+      <li><a href="/facebook-downloader/" {% if request.path == '/facebook-downloader/' %}class="active"{% endif %}>Facebook</a></li>
+      <li><a href="/twitter-downloader/" {% if request.path == '/twitter-downloader/' %}class="active"{% endif %}>Twitter</a></li>
+    </ul>
+  </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/tiktok-downloader/">TikTok Downloader</a>
+      <a href="/instagram-downloader/">Instagram Downloader</a>
+      <a href="/youtube-downloader/">YouTube Downloader</a>
+      <a href="/facebook-downloader/">Facebook Downloader</a>
+      <a href="/twitter-downloader/">Twitter Downloader</a>
+    </div>
+    <p class="footer-copy">
+      &copy; 2025 VidDown.pro — Free Online Video Downloader. For personal use only.<br>
+      <small style="opacity:.5">We do not store any videos. All downloads are processed in real-time.</small>
+    </p>
+  </div>
+</footer>
+
+{% load static %}
+<script src="{% static 'downloader/js/main.js' %}"></script>
+</body>
+</html>
