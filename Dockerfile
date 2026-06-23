@@ -10,10 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV DJANGO_SETTINGS_MODULE=core.settings
-ENV PORT=8000
 
 RUN python manage.py collectstatic --noinput
 
-EXPOSE 8000
-
-CMD gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --timeout 300 --keep-alive 5
+CMD ["sh", "-c", "gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --timeout 300"]
