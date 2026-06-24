@@ -262,8 +262,16 @@ def api_formats(request):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
 
-        title     = info.get('title', 'Video')[:100]
-        thumbnail = info.get('thumbnail', '')
+        title     = info.get('title', '') or info.get('description', '') or 'TikTok Video'
+        # Clean title - remove excessive hashtags if title is just hashtags
+        if title and title.startswith('#'):
+            desc = info.get('description', '')
+            if desc:
+                title = desc[:80]
+            else:
+                title = 'TikTok Video'
+        title = title[:100]
+        thumbnail = info.get('thumbnail', '') or ''
         duration  = info.get('duration', 0) or 0
 
         if duration > 1800:
